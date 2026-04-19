@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -10,93 +10,129 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 60);
     };
-
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
-    // Close menu when route changes
     setMenuOpen(false);
   }, [location]);
 
+  // Prevent body scroll when menu open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Research', path: '/research' },
-    { name: 'Portfolio', path: '/portfolio' },
-    { name: 'Design', path: '/design' },
+    { name: 'Home',         path: '/' },
+    { name: 'Research',     path: '/research' },
+    { name: 'Portfolio',    path: '/portfolio' },
     { name: 'Publications', path: '/publications' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' }
+    { name: 'About',        path: '/about' },
+    { name: 'Contact',      path: '/contact' },
   ];
 
-  // Animation variants
-  const navbarVariants = {
-    initial: { opacity: 0, y: -20 },
-    animate: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  };
-
-  const linkVariants = {
-    initial: { y: -20, opacity: 0 },
-    animate: (i) => ({
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.4, delay: 0.1 * i }
-    })
-  };
-
   return (
-    <motion.nav 
+    <motion.nav
       className={`navbar ${isScrolled ? 'scrolled' : ''}`}
-      variants={navbarVariants}
-      initial="initial"
-      animate="animate"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="navbar-container">
+        {/* Logo */}
         <Link to="/" className="navbar-logo">
-          <div className="logo-layers">
-            <div className="logo-layer layer-1"></div>
-            <div className="logo-layer layer-2"></div>
-            <div className="logo-layer layer-3"></div>
-            <div className="logo-layer layer-4"></div>
+          <div className="logo-monogram">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 10 H42 M24 10 V38" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+              <path d="M28 24 L42 38 M28 38 L42 24" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+            </svg>
           </div>
-          <span>Tina Ziarati</span>
+          <div className="logo-text">
+            <span className="logo-name">Tina Ziarati</span>
+            <span className="logo-title">BIM Engineer · Designer</span>
+          </div>
         </Link>
 
-        <div className={`navbar-links ${menuOpen ? 'active' : ''}`}>
+        {/* Desktop links */}
+        <div className="navbar-links">
           {navLinks.map((link, index) => (
-            <motion.div 
-              key={link.name} 
-              variants={linkVariants}
-              initial="initial"
-              animate="animate"
-              custom={index}
+            <motion.div
+              key={link.name}
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.05 * index }}
             >
-              <Link 
-                to={link.path} 
-                className={location.pathname === link.path ? 'active' : ''}
+              <Link
+                to={link.path}
+                className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}
               >
                 {link.name}
               </Link>
             </motion.div>
           ))}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: 0.35 }}
+          >
+            <Link to="/contact" className="nav-cta">Get in Touch</Link>
+          </motion.div>
         </div>
 
-        <div 
+        {/* Hamburger */}
+        <button
           className={`hamburger ${menuOpen ? 'active' : ''}`}
           onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={menuOpen}
         >
-          <div className="line"></div>
-          <div className="line"></div>
-          <div className="line"></div>
-        </div>
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+        </button>
       </div>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="mobile-menu"
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <nav className="mobile-nav">
+              {navLinks.map((link, index) => (
+                <motion.div
+                  key={link.name}
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 * index, duration: 0.3 }}
+                >
+                  <Link
+                    to={link.path}
+                    className={`mobile-nav-link ${location.pathname === link.path ? 'active' : ''}`}
+                  >
+                    {link.name}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3, duration: 0.3 }}
+              >
+                <Link to="/contact" className="mobile-nav-cta">Get in Touch</Link>
+              </motion.div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 };

@@ -92,9 +92,9 @@ const ContactSection = () => {
               <div className="method-details">
                 <h3>Connect</h3>
                 <div className="social-links">
-                  <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/tina-ziarati-42b014202/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                   <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">Twitter</a>
-                  <a href="https://researchgate.net/" target="_blank" rel="noopener noreferrer">ResearchGate</a>
+            <a href="https://github.com/Tina7887" target="_blank" rel="noopener noreferrer">GitHub</a>
                 </div>
               </div>
             </div>

@@ -1,458 +1,643 @@
-// src/pages/Research.js
-import React, { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import './Research.css';
 
-// Components
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import ResearchWebVisualization from '../components/ResearchWebVisualization';
-import ParametricWaveAnimation from '../components/ParametricWaveAnimation';
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] }
+  })
+};
 
-// Constants
-import colors from '../constants/colors';
+const researchAreas = [
+  {
+    id: 'bim',
+    label: '01 / Coordination',
+    shortTitle: 'BIM & delivery intelligence',
+    title: 'BIM Coordination & Constructability',
+    summary:
+      'Using BIM as a decision layer for complex architectural delivery, from multidisciplinary coordination and clash detection to information structures that keep design intent clear through execution.',
+    note:
+      'This track is strongest when architecture, structure, and systems teams need one shared model logic instead of parallel disconnected documentation.',
+    metrics: [
+      { value: '2', label: 'project anchors' },
+      { value: '1', label: 'linked publication' },
+      { value: '3', label: 'core platforms' }
+    ],
+    questions: [
+      'How can a model reduce coordination friction before issues reach site?',
+      'What information structure supports cleaner collaboration across disciplines?',
+      'How can BIM stay legible for both design development and execution teams?'
+    ],
+    applications: [
+      'Historic warehouse conversion in Rieti',
+      'Research and technology building in Tehran',
+      'Infrastructure coordination with large multidisciplinary teams'
+    ],
+    tools: ['Revit', 'Navisworks', 'AutoCAD', 'shared parameters'],
+    gradient: 'linear-gradient(135deg, #C08552 0%, #8C5A3C 100%)'
+  },
+  {
+    id: 'ai',
+    label: '02 / Intelligence',
+    shortTitle: 'AI for sustainable systems',
+    title: 'AI in Sustainable Building Engineering',
+    summary:
+      'Exploring how digital twins, reinforcement learning, and data-informed simulation can improve energy efficiency, HVAC performance, and environmental decision-making in buildings.',
+    note:
+      'The goal is not technology for its own sake, but operational intelligence that improves comfort, lowers waste, and makes sustainability measurable.',
+    metrics: [
+      { value: '3', label: 'published outputs' },
+      { value: '2024', label: 'research ramp-up' },
+      { value: '2', label: 'major AI themes' }
+    ],
+    questions: [
+      'How can AI augment environmental design without losing engineering rigor?',
+      'What can digital twins reveal earlier than conventional workflows?',
+      'How should thermodynamic constraints shape learning-based optimization?'
+    ],
+    applications: [
+      'Bioclimatic building design research',
+      'Physics-informed HVAC optimization',
+      'AI and renewable energy systems studies'
+    ],
+    tools: ['digital twins', 'simulation', 'RL frameworks', 'energy analytics'],
+    gradient: 'linear-gradient(135deg, #8C5A3C 0%, #4B2E2B 100%)'
+  },
+  {
+    id: 'resilience',
+    label: '03 / Resilience',
+    shortTitle: 'Infrastructure and risk systems',
+    title: 'Infrastructure Resilience & Risk Reduction',
+    summary:
+      'Researching seismic preparedness, emergency planning, and public-awareness systems that connect technical engineering knowledge with actionable resilience strategies.',
+    note:
+      'This work is focused on the gap between what experts know and what communities, institutions, and decision-makers can actually use during risk planning.',
+    metrics: [
+      { value: '1', label: 'survey-based paper' },
+      { value: '1', label: 'national-scale topic' },
+      { value: '3', label: 'resilience lenses' }
+    ],
+    questions: [
+      'Where do planning systems fail before a disaster occurs?',
+      'How can technical risk communication become more public-facing?',
+      'What kinds of integrated strategies reduce vulnerability at scale?'
+    ],
+    applications: [
+      'Earthquake emergency planning analysis',
+      'Public-awareness and preparedness research',
+      'Systems thinking for infrastructure resilience'
+    ],
+    tools: ['risk mapping', 'survey analysis', 'policy framing', 'system integration'],
+    gradient: 'linear-gradient(135deg, #6E4530 0%, #4B2E2B 100%)'
+  },
+  {
+    id: 'heritage',
+    label: '04 / Preservation',
+    shortTitle: 'Heritage-sensitive intervention',
+    title: 'Heritage-Sensitive Design Strategy',
+    summary:
+      'Balancing contemporary performance targets with cultural continuity through design methods that respect existing fabric, local identity, and architectural memory.',
+    note:
+      'This area bridges research and practice most directly because it requires both analytical discipline and design sensitivity in every decision.',
+    metrics: [
+      { value: '2', label: 'built contexts' },
+      { value: 'Italy', label: 'active setting' },
+      { value: '1', label: 'design principle' }
+    ],
+    questions: [
+      'How can renovation preserve identity without freezing a building in time?',
+      'Which interventions add value without erasing context?',
+      'How should historic constraints reshape technical decision-making?'
+    ],
+    applications: [
+      'Warehouse-to-residential adaptive reuse',
+      'Context-aware renovation workflows',
+      'Technical documentation for sensitive urban settings'
+    ],
+    tools: ['survey workflows', 'documentation', 'renovation detailing', 'fire safety'],
+    gradient: 'linear-gradient(135deg, #D4A06A 0%, #C08552 100%)'
+  }
+];
 
-// Initialize GSAP
-gsap.registerPlugin(ScrollTrigger);
+const methodology = [
+  {
+    id: 'frame',
+    number: '01',
+    title: 'Frame the performance question',
+    description:
+      'Each study starts by identifying the environmental, operational, or coordination problem that actually matters for a building, not just what is easy to simulate.'
+  },
+  {
+    id: 'model',
+    number: '02',
+    title: 'Model the system with discipline',
+    description:
+      'Digital models are treated as structured evidence: geometry, data, constraints, and relationships must all remain legible enough to support decisions.'
+  },
+  {
+    id: 'test',
+    number: '03',
+    title: 'Test alternatives across scenarios',
+    description:
+      'Design options, climate conditions, system responses, and implementation pathways are compared iteratively so tradeoffs become visible early.'
+  },
+  {
+    id: 'translate',
+    number: '04',
+    title: 'Translate findings into practice',
+    description:
+      'The output is only complete when it can inform documentation, collaboration, sustainability strategy, or a clearer next design move.'
+  }
+];
+
+const workflow = [
+  {
+    phase: 'Question',
+    title: 'Define ambition and constraints',
+    description:
+      'Set measurable targets around comfort, coordination quality, resilience, or environmental performance.'
+  },
+  {
+    phase: 'Simulation',
+    title: 'Build the analytical layer',
+    description:
+      'Connect geometry, data, and system behavior so the design can be tested rather than only described.'
+  },
+  {
+    phase: 'Validation',
+    title: 'Compare evidence and iterate',
+    description:
+      'Review multiple options, pressure-test assumptions, and refine what should move forward.'
+  },
+  {
+    phase: 'Application',
+    title: 'Embed the result in real work',
+    description:
+      'Carry the insight into BIM delivery, sustainability strategy, technical coordination, or publication.'
+  }
+];
+
+const featuredPublications = [
+  {
+    title:
+      'Artificial Intelligence and Digital Twins for Bioclimatic Building Design: Innovations in Sustainability and Efficiency',
+    journal: 'Energies',
+    year: '2025',
+    category: 'Journal Article',
+    summary:
+      'Investigates how AI and digital twins can improve bioclimatic design decisions and raise measurable sustainability performance.',
+    tags: ['AI', 'Digital Twins', 'Bioclimatic Design'],
+    doi: '10.3390/en18195230',
+    gradient: 'linear-gradient(135deg, #C08552 0%, #8C5A3C 100%)'
+  },
+  {
+    title:
+      'A Physics-Informed Reinforcement Learning Framework for HVAC Optimization',
+    journal: 'Energies',
+    year: '2025',
+    category: 'Journal Article',
+    summary:
+      'Develops a thermodynamically constrained RL framework for HVAC optimization, combining simulation validation with energy-performance logic.',
+    tags: ['Reinforcement Learning', 'HVAC', 'Optimization'],
+    doi: '10.3390/en18236310',
+    gradient: 'linear-gradient(135deg, #8C5A3C 0%, #4B2E2B 100%)'
+  },
+  {
+    title:
+      "Iran's Seismic Puzzle: Bridging Gaps in Earthquake Emergency Planning and Public Awareness for Risk Reduction",
+    journal: 'Italian Journal of Engineering Geology and Environment',
+    year: '2024',
+    category: 'Journal Article',
+    summary:
+      'Examines resilience through emergency planning and public-awareness systems, arguing for a more integrated and participative risk-reduction strategy.',
+    tags: ['Seismic Risk', 'Planning', 'Resilience'],
+    doi: '10.4408/IJEGE.2024-01.O-01',
+    gradient: 'linear-gradient(135deg, #6E4530 0%, #4B2E2B 100%)'
+  },
+  {
+    title:
+      'Overview of the Impact of Artificial Intelligence on the Future of Renewable Energy',
+    journal: 'IEEE EEEIC / ICPS Europe',
+    year: '2024',
+    category: 'Conference Paper',
+    summary:
+      'Positions AI, digital twins, and smart-city thinking as practical levers for a more responsive and efficient renewable-energy ecosystem.',
+    tags: ['Renewable Energy', 'AI', 'Smart Cities'],
+    doi: '10.1109/EEEIC/ICPSEurope61470.2024.10751553',
+    gradient: 'linear-gradient(135deg, #D4A06A 0%, #C08552 100%)'
+  }
+];
+
+const researchImpact = [
+  {
+    title: 'From theory to project delivery',
+    description:
+      'Research insights are translated into documentation logic, BIM coordination, and performance-led architectural decision-making.'
+  },
+  {
+    title: 'Multi-scale thinking',
+    description:
+      'The work spans room-scale environmental systems, building-wide digital workflows, and infrastructure resilience questions.'
+  },
+  {
+    title: 'Design with evidence',
+    description:
+      'The common thread is disciplined experimentation: test, compare, and make visible why one design move performs better than another.'
+  }
+];
 
 const Research = () => {
-  const [activeTab, setActiveTab] = useState('overview');
-  const researchAreasRef = useRef(null);
-  const projectsRef = useRef(null);
-  const methodologyRef = useRef(null);
-  
-  // Research Areas Data
-  const researchAreas = [
-    {
-      id: 'bim',
-      title: 'Building Information Modeling (BIM)',
-      description: 'My research investigates advanced applications of BIM technologies for sustainable building design, heritage preservation, and integration with computational methods.',
-      color: colors.research.parametric,
-      gradient: 'linear-gradient(135deg, #4cc9f0, #4361ee)',
-      icon: '🏢',
-      projects: [1, 2],
-      publications: [1],
-      visual: 'grid'
-    },
-    {
-      id: 'specialized-buildings',
-      title: 'Specialized Building Types',
-      description: 'I explore innovative approaches to specific building typologies, including educational facilities, social housing, and adaptive reuse of industrial sites.',
-      color: colors.research.adaptive,
-      gradient: 'linear-gradient(135deg, #7209b7, #3a0ca3)', 
-      icon: '🏗️',
-      projects: [2, 3],
-      publications: [],
-      visual: 'buildings'
-    },
-    {
-      id: 'smart-design',
-      title: 'Human-Centered Smart Design',
-      description: 'My work focuses on developing smart building systems that prioritize user experience and well-being, incorporating AI, digital twins, and IoT technologies.',
-      color: colors.research.computation,
-      gradient: 'linear-gradient(135deg, #f72585, #b5179e)',
-      icon: '🧠',
-      projects: [3],
-      publications: [3],
-      visual: 'nodes'
-    },
-    {
-      id: 'structural-systems',
-      title: 'Structural Systems in Architecture',
-      description: 'I investigate the intersection of structural engineering and architectural design, with particular focus on resilient systems for seismic regions.',
-      color: colors.research.materials,
-      gradient: 'linear-gradient(135deg, #480ca8, #3f37c9)',
-      icon: '🔧',
-      projects: [1],
-      publications: [2],
-      visual: 'structure'
-    }
-  ];
-  
-  // Projects Data
-  const projects = [
-    {
-      id: 1,
-      title: 'Heritage-BIM Project – SNIA Viscosa Industrial Site',
-      year: 2025,
-      area: 'bim',
-      image: 'project1.jpg',
-      description: 'A comprehensive Heritage-BIM modeling project of the historic Snia Viscosa factory in Rieti, capturing intricate architectural details and structural components. The project focuses on transforming the abandoned industrial site into a sustainable urban landmark, integrating modern environmental solutions while preserving its historical identity.',
-      technologies: ['Revit', 'AutoCAD', 'Laser Scanning', 'Point Cloud Processing'],
-      gradient: 'linear-gradient(135deg, #4cc9f0, #4361ee)'
-    },
-    {
-      id: 2,
-      title: 'Phased BIM Modeling and Sustainable Redevelopment',
-      year: 2025,
-      area: 'bim',
-      image: 'project2.jpg',
-      description: 'A complete BIM project using Revit, modeling an existing two-story building through detailed phasing, including its current state and planned demolition. The project involves reconstructing the building with a focus on sustainable design solutions, incorporating energy-efficient strategies and modern construction standards.',
-      technologies: ['Revit', 'Energy Analysis', 'Sustainable Design', 'BIM'],
-      gradient: 'linear-gradient(135deg, #3a0ca3, #4361ee)'
-    },
-    {
-      id: 3,
-      title: 'Transforming Rieti into a Hub for Sustainable Education',
-      year: 2022,
-      area: 'specialized-buildings',
-      image: 'project3.jpg',
-      description: 'A visionary project aimed at re-purposing a sugar factory in Rieti, Italy, into a thriving university city. This initiative fostered sustainable development and positively impacted the entire region through adaptive reuse and educational infrastructure development.',
-      technologies: ['Urban Planning', 'Adaptive Reuse', 'Sustainable Design'],
-      gradient: 'linear-gradient(135deg, #7209b7, #3a0ca3)'
-    },
-    {
-      id: 4,
-      title: 'Smart Sustainability: AI Applications in Renewable Energy',
-      year: 2023,
-      area: 'smart-design',
-      image: 'project4.jpg',
-      description: 'Research project exploring the potential for significant advancements in renewable energy by integrating artificial intelligence. The project demonstrates how incorporating AI can unlock efficiency, maximize resource use, and propel the sustainable energy sector into a technologically advanced future.',
-      technologies: ['Artificial Intelligence', 'Renewable Energy', 'Digital Twins', 'Smart City Technologies'],
-      gradient: 'linear-gradient(135deg, #f72585, #b5179e)'
-    },
-    {
-      id: 5,
-      title: 'Emergency Planning for Seismic Disasters in Iran',
-      year: 2023,
-      area: 'structural-systems',
-      image: 'project5.jpg',
-      description: 'Research investigating emergency planning and preparedness for seismic disasters in Iran. Based on a comprehensive national survey, the study recommends a holistic, integrated, and participative strategy for earthquake risk reduction and enhanced public awareness.',
-      technologies: ['Seismic Safety', 'Emergency Planning', 'Risk Reduction', 'Public Awareness'],
-      gradient: 'linear-gradient(135deg, #480ca8, #3f37c9)'
-    }
-  ];
-  
-  // Research Methodology
-  const methodology = [
-    {
-      id: 'computational',
-      title: 'Computational Simulation',
-      description: 'Using digital modeling and simulation tools to analyze building performance across multiple parameters and scenarios.',
-      icon: '💻'
-    },
-    {
-      id: 'data-analysis',
-      title: 'Data Analysis & Visualization',
-      description: 'Applying analytical methods to interpret building performance data and visualize complex relationships.',
-      icon: '📊'
-    },
-    {
-      id: 'case-studies',
-      title: 'Case Studies & Field Research',
-      description: 'Conducting in-depth analyses of existing buildings and infrastructure to identify best practices and areas for improvement.',
-      icon: '🔍'
-    },
-    {
-      id: 'prototyping',
-      title: 'Digital & Physical Prototyping',
-      description: 'Developing scaled models and prototypes to test design concepts and validate computational findings.',
-      icon: '🧪'
-    }
-  ];
-  
-  // Set up animations
-  useEffect(() => {
-    // Animate research areas
-    if (researchAreasRef.current) {
-      const areas = researchAreasRef.current.querySelectorAll('.research-area-card');
-      
-      gsap.fromTo(
-        areas,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.2,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: researchAreasRef.current,
-            start: "top 80%"
-          }
-        }
-      );
-      
-      // Animate the visual elements inside each card
-      const visuals = researchAreasRef.current.querySelectorAll('.area-visual-element');
-      
-      gsap.fromTo(
-        visuals,
-        { scale: 0, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          stagger: 0.15,
-          delay: 0.5,
-          duration: 0.6,
-          ease: "back.out(1.7)",
-          scrollTrigger: {
-            trigger: researchAreasRef.current,
-            start: "top 80%"
-          }
-        }
-      );
-    }
-    
-    // Animate projects
-    if (projectsRef.current) {
-      const projects = projectsRef.current.querySelectorAll('.project-card');
-      
-      gsap.fromTo(
-        projects,
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.15,
-          duration: 0.7,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: projectsRef.current,
-            start: "top 80%"
-          }
-        }
-      );
-    }
-    
-    // Animate methodology
-    if (methodologyRef.current) {
-      const methods = methodologyRef.current.querySelectorAll('.methodology-item');
-      
-      gsap.fromTo(
-        methods,
-        { scale: 0.9, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          stagger: 0.15,
-          duration: 0.7,
-          ease: "back.out(1.5)",
-          scrollTrigger: {
-            trigger: methodologyRef.current,
-            start: "top 80%"
-          }
-        }
-      );
-    }
-  }, [activeTab]);
-  
+  const [activeAreaId, setActiveAreaId] = useState(researchAreas[0].id);
+  const activeArea = researchAreas.find((area) => area.id === activeAreaId) || researchAreas[0];
+
   return (
-    <div className="research-page">
-      <Navbar />
-      
-      <main>
-        {/* Hero Section with 3D Visualization */}
-        <section className="research-hero">
-          <div className="hero-backdrop">
-            <div className="hero-gradient-overlay"></div>
-            <ParametricWaveAnimation 
-              color={0x4361ee}
-              speed={0.3}
-              amplitude={0.5}
-              colorMode="dynamic"
-              isInteractive={false}
-            />
-          </div>
-          
-          <div className="research-hero-content">
-            <motion.h1 
-              className="research-title"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+    <motion.div
+      className="research-page"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.45 }}
+    >
+      <section className="research-hero-section dark-section">
+        <div className="research-hero-grid-pattern"></div>
+        <div className="research-hero-glow research-hero-glow-left"></div>
+        <div className="research-hero-glow research-hero-glow-right"></div>
+
+        <div className="container research-hero-grid">
+          <motion.div
+            className="research-hero-copy"
+            initial="hidden"
+            animate="visible"
+            variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
+          >
+            <motion.p
+              className="section-label"
+              style={{ color: 'var(--copper-light)' }}
+              variants={fadeUp}
+              custom={0}
             >
-              Research Vision
-            </motion.h1>
-            <motion.p 
-              className="research-description"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              My research sits at the intersection of sustainable building engineering, computational design, and smart technologies, 
-              exploring how innovative approaches can create more resilient, efficient, and human-centered built environments.
+              Research Direction
             </motion.p>
-            
-            <motion.div 
-              className="research-keywords"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-            >
-              <span>Sustainability</span>
-              <span>Innovation</span>
-              <span>Efficiency</span>
-              <span>Resilience</span>
+
+            <motion.h1 className="research-hero-title" variants={fadeUp} custom={0.08}>
+              Research that turns
+              <span className="research-hero-title-accent"> building intelligence into design decisions.</span>
+            </motion.h1>
+
+            <motion.p className="research-hero-lead" variants={fadeUp} custom={0.16}>
+              My work focuses on how digital coordination, environmental intelligence, and
+              systems thinking can produce buildings and infrastructure that are more
+              resilient, more efficient, and more responsible to context.
+            </motion.p>
+
+            <motion.div className="research-hero-actions" variants={fadeUp} custom={0.24}>
+              <Link to="/publications" className="btn">
+                View Publications
+              </Link>
+              <Link to="/contact" className="btn btn-outline research-hero-outline">
+                Research Collaboration
+              </Link>
             </motion.div>
-          </div>
-        </section>
-        
-        {/* Research Areas Section */}
-        <section className="research-areas" ref={researchAreasRef}>
-          <div className="container">
-            <div className="section-header">
-              <h2>Research Areas</h2>
-              <p>My research spans several interconnected domains in architecture and construction technology.</p>
+
+            <motion.div className="research-hero-stats" variants={fadeUp} custom={0.32}>
+              <div className="research-hero-stat">
+                <span className="research-hero-stat-value">4</span>
+                <span className="research-hero-stat-label">published papers</span>
+              </div>
+              <div className="research-hero-stat">
+                <span className="research-hero-stat-value">3</span>
+                <span className="research-hero-stat-label">active research clusters</span>
+              </div>
+              <div className="research-hero-stat">
+                <span className="research-hero-stat-value">2</span>
+                <span className="research-hero-stat-label">practice-to-academia directions</span>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            className="research-hero-aside"
+            initial={{ opacity: 0, x: 36 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.85, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="research-hero-card">
+              <p className="research-card-eyebrow">Current emphasis</p>
+              <h2>Applied research for real building systems</h2>
+              <p>
+                The through-line is consistent: combine technical rigor with design clarity so
+                research outcomes are usable in practice, not isolated from it.
+              </p>
+              <div className="research-hero-card-tags">
+                <span>AI for energy systems</span>
+                <span>BIM coordination</span>
+                <span>Seismic preparedness</span>
+                <span>Context-sensitive renovation</span>
+              </div>
             </div>
-            
-            <div className="research-areas-grid">
-              {researchAreas.map((area) => (
-                <div 
-                  key={area.id} 
-                  className="research-area-card"
-                  data-area={area.id}
-                >
-                  <div 
-                    className="area-icon-container"
-                    aria-hidden="true"
+
+            <div className="research-orbit-card">
+              <p className="research-card-eyebrow">Live themes</p>
+              <div className="research-orbit">
+                <div className="research-orbit-core">Built Environment</div>
+                {researchAreas.map((area, index) => (
+                  <span
+                    key={area.id}
+                    className={`research-orbit-node research-orbit-node-${index + 1}`}
+                    style={{ '--node-gradient': area.gradient }}
                   >
-                    <span className="area-icon">{area.icon}</span>
+                    {area.shortTitle}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="research-focus-section">
+        <div className="container">
+          <motion.div
+            className="section-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="section-label">Research Focus</p>
+            <h2>An editorial view of the work</h2>
+            <div className="section-divider"></div>
+            <p>
+              The research page now reads as a structured narrative: each area has a clear
+              question, application range, and practical consequence.
+            </p>
+          </motion.div>
+
+          <div className="research-focus-layout">
+            <div className="research-focus-nav">
+              {researchAreas.map((area, index) => (
+                <motion.button
+                  key={area.id}
+                  type="button"
+                  className={`research-focus-trigger ${activeAreaId === area.id ? 'active' : ''}`}
+                  onClick={() => setActiveAreaId(area.id)}
+                  style={{ '--focus-gradient': area.gradient }}
+                  initial={{ opacity: 0, x: -18 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.45, delay: index * 0.06 }}
+                >
+                  <span className="research-focus-trigger-label">{area.label}</span>
+                  <span className="research-focus-trigger-title">{area.title}</span>
+                  <span className="research-focus-trigger-note">{area.shortTitle}</span>
+                </motion.button>
+              ))}
+            </div>
+
+            <motion.article
+              key={activeArea.id}
+              className="research-focus-panel"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              style={{ '--panel-gradient': activeArea.gradient }}
+            >
+              <div className="research-focus-panel-header">
+                <span className="research-focus-pill">{activeArea.label}</span>
+                <h3>{activeArea.title}</h3>
+                <p>{activeArea.summary}</p>
+              </div>
+
+              <div className="research-focus-metrics">
+                {activeArea.metrics.map((metric) => (
+                  <div key={metric.label} className="research-focus-metric">
+                    <span className="research-focus-metric-value">{metric.value}</span>
+                    <span className="research-focus-metric-label">{metric.label}</span>
                   </div>
-                  
-                  <div className="area-card-content">
-                    <h3 className="area-title">{area.title}</h3>
-                    <p className="area-description">{area.description}</p>
-                    
-                    <div className="area-indicators">
-                      <div className="area-indicator">
-                        <span className="indicator-value">{area.projects.length}</span>
-                        <span className="indicator-label">Projects</span>
-                      </div>
-                      <div className="area-indicator">
-                        <span className="indicator-value">{area.publications.length}</span>
-                        <span className="indicator-label">Publications</span>
-                      </div>
-                    </div>
+                ))}
+              </div>
+
+              <div className="research-focus-columns">
+                <div className="research-focus-block">
+                  <span className="research-focus-block-label">Core questions</span>
+                  <ul>
+                    {activeArea.questions.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="research-focus-block">
+                  <span className="research-focus-block-label">Applied in</span>
+                  <ul>
+                    {activeArea.applications.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="research-focus-footer">
+                <div className="research-focus-tools">
+                  {activeArea.tools.map((tool) => (
+                    <span key={tool} className="tag">
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+                <p className="research-focus-note">{activeArea.note}</p>
+              </div>
+            </motion.article>
+          </div>
+        </div>
+      </section>
+
+      <section className="research-method-section dark-section">
+        <div className="container research-method-layout">
+          <motion.div
+            className="research-method-intro"
+            initial={{ opacity: 0, y: 26 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.75 }}
+          >
+            <p className="section-label" style={{ color: 'var(--copper-light)' }}>
+              Methodology
+            </p>
+            <h2>Measured experimentation, not abstract speculation.</h2>
+            <div className="section-divider research-method-divider"></div>
+            <p className="research-method-copy">
+              Research methods need to stay elegant enough for communication and rigorous enough
+              for engineering. The workflow below keeps both sides in view.
+            </p>
+
+            <div className="research-workflow">
+              {workflow.map((item) => (
+                <div key={item.phase} className="research-workflow-item">
+                  <span className="research-workflow-phase">{item.phase}</span>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
-        </section>
-        
-        {/* Interactive Research Visualization */}
-        <section className="research-visualization">
-          <div className="container">
-            <div className="section-header">
-              <h2>Research Networks</h2>
-              <p>Explore how my research areas interconnect and build upon each other.</p>
-            </div>
-            
-            <div className="visualization-container">
-              <ResearchWebVisualization />
-            </div>
-          </div>
-        </section>
-        
-        {/* Methodology Section - Enhanced */}
-        <section className="research-methodology" ref={methodologyRef}>
-          <div className="container">
-            <div className="section-header light">
-              <h2>Research Methodology</h2>
-              <p>
-                My approach combines computational techniques, empirical analysis, and design principles 
-                to develop innovative solutions for complex architectural challenges.
-              </p>
-            </div>
-            
-            <div className="methodology-grid">
-              {methodology.map((method, index) => (
-                <motion.div 
-                  key={method.id}
-                  className="methodology-item"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <div className="methodology-icon">{method.icon}</div>
-                  <div className="methodology-content">
-                    <div className="methodology-number">0{index + 1}</div>
-                    <h3 className="methodology-title">{method.title}</h3>
-                    <p className="methodology-description">{method.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-        
-        {/* Latest Projects */}
-        <section className="latest-projects" ref={projectsRef}>
-          <div className="container">
-            <div className="section-header">
-              <h2>Latest Projects</h2>
-              <p>
-                Recent research projects applying innovative approaches to architectural engineering challenges.
-              </p>
-            </div>
-            
-            <div className="projects-grid">
-              {projects.slice(0, 3).map((project) => (
-                <motion.div 
-                  key={project.id}
-                  className="project-card"
-                  whileHover={{ 
-                    y: -5, 
-                    boxShadow: '0 15px 30px rgba(0, 0, 0, 0.15)',
-                    transition: { duration: 0.3 } 
-                  }}
-                >
-                  <div 
-                    className="project-image" 
-                    style={{ backgroundImage: project.gradient }}
-                  >
-                    <div className="project-year">{project.year}</div>
-                  </div>
-                  
-                  <div className="project-content">
-                    <h3 className="project-title">{project.title}</h3>
-                    <p className="project-excerpt">
-                      {project.description.substring(0, 120)}...
-                    </p>
-                    
-                    <div className="project-technologies">
-                      {project.technologies.slice(0, 3).map((tech, index) => (
-                        <span key={index} className="technology-tag">{tech}</span>
-                      ))}
-                      {project.technologies.length > 3 && (
-                        <span className="technology-tag">+{project.technologies.length - 3}</span>
-                      )}
-                    </div>
-                    
-                    <motion.a 
-                      href={`/portfolio/project/${project.id}`} 
-                      className="project-link"
-                      whileHover={{ x: 5 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      Learn more
-                    </motion.a>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-            
-            <div className="view-all-container">
-              <motion.a 
-                href="/portfolio" 
-                className="view-all-button"
-                whileHover={{ y: -3, boxShadow: '0 8px 20px rgba(76, 201, 240, 0.5)' }}
-                transition={{ duration: 0.2 }}
+          </motion.div>
+
+          <div className="research-method-grid">
+            {methodology.map((item, index) => (
+              <motion.article
+                key={item.id}
+                className="research-method-card"
+                initial={{ opacity: 0, y: 26 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: index * 0.08 }}
               >
-                View All Projects
-              </motion.a>
-            </div>
+                <span className="research-method-card-number">{item.number}</span>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </motion.article>
+            ))}
           </div>
-        </section>
-      </main>
-      
-      <Footer />
-    </div>
+        </div>
+      </section>
+
+      <section className="research-output-section">
+        <div className="container">
+          <motion.div
+            className="section-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="section-label">Selected Outputs</p>
+            <h2>Recent publications with a clearer visual hierarchy</h2>
+            <div className="section-divider"></div>
+            <p>
+              Instead of the older generic project cards, this section foregrounds the actual
+              academic output and lets readers move directly to the publication record.
+            </p>
+          </motion.div>
+
+          <div className="research-output-grid">
+            {featuredPublications.map((publication, index) => (
+              <motion.article
+                key={publication.title}
+                className="research-output-card"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.65, delay: index * 0.08 }}
+              >
+                <div
+                  className="research-output-card-accent"
+                  style={{ background: publication.gradient }}
+                ></div>
+                <div className="research-output-card-body">
+                  <div className="research-output-card-meta">
+                    <span className="research-output-type">{publication.category}</span>
+                    <span className="research-output-year">{publication.year}</span>
+                  </div>
+                  <h3>{publication.title}</h3>
+                  <p className="research-output-journal">{publication.journal}</p>
+                  <p className="research-output-summary">{publication.summary}</p>
+
+                  <div className="research-output-tags">
+                    {publication.tags.map((tag) => (
+                      <span key={tag} className="tag">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="research-output-actions">
+                    <a
+                      href={`https://doi.org/${publication.doi}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-outline research-output-link"
+                    >
+                      Open DOI
+                    </a>
+                    <Link to="/publications" className="research-output-inline-link">
+                      See full list
+                    </Link>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="research-impact-section dark-section">
+        <div className="container">
+          <motion.div
+            className="section-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="section-label" style={{ color: 'var(--copper-light)' }}>
+              Why It Matters
+            </p>
+            <h2 style={{ color: 'var(--cream)' }}>Research that stays usable in practice</h2>
+            <div className="section-divider"></div>
+          </motion.div>
+
+          <div className="research-impact-grid">
+            {researchImpact.map((item, index) => (
+              <motion.article
+                key={item.title}
+                className="research-impact-card"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: index * 0.08 }}
+              >
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </motion.article>
+            ))}
+          </div>
+
+          <motion.div
+            className="research-cta-card"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.12 }}
+          >
+            <div>
+              <p className="section-label" style={{ color: 'var(--copper-light)' }}>
+                Collaboration
+              </p>
+              <h3>Looking for research, publication, or applied design collaboration?</h3>
+              <p>
+                I am open to collaborations in sustainable building engineering, BIM-enabled
+                delivery, AI-informed environmental systems, and resilience-focused research.
+              </p>
+            </div>
+            <div className="research-cta-actions">
+              <Link to="/contact" className="btn">
+                Start a Conversation
+              </Link>
+              <Link to="/portfolio" className="btn btn-outline research-hero-outline">
+                View Practice Work
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </motion.div>
   );
 };
 
 export default Research;
-

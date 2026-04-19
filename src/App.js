@@ -36,7 +36,7 @@ function App() {
     // Simulate loading resources
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1800);
   }, []);
 
   if (loading) {
@@ -48,7 +48,7 @@ function App() {
           <div className="loading-layer layer-3"></div>
           <div className="loading-layer layer-4"></div>
         </div>
-        <div className="loading-text">Building Architectural Layers</div>
+        <div className="loading-text">Tina Ziarati · BIM Engineer</div>
       </div>
     );
   }
