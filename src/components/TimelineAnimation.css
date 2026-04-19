@@ -1,0 +1,244 @@
+.timeline-animation {
+    width: 100%;
+    min-height: 200vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 0;
+  }
+  
+  .timeline-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .timeline-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, var(--structural-light), var(--experience-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .timeline-header p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .timeline-progress {
+    position: sticky;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 70vh;
+    margin-left: 2rem;
+    z-index: 10;
+  }
+  
+  .timeline-line {
+    position: absolute;
+    top: 0;
+    left: 2px;
+    width: 1px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .timeline-indicator {
+    position: absolute;
+    left: 0;
+    width: 5px;
+    height: 20%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 184, 169, 0.7);
+    transition: top 0.3s ease;
+  }
+  
+  .timeline-point {
+    position: absolute;
+    left: -7.5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-origin: center;
+    z-index: 20;
+    transition: all 0.3s ease;
+  }
+  
+  .timeline-point::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 30px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%);
+  }
+  
+  .timeline-point.active {
+    box-shadow: 0 0 15px rgba(0, 184, 169, 0.7);
+  }
+  
+  .timeline-point-icon {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+  
+  .timeline-point.active .timeline-point-icon {
+    opacity: 1;
+  }
+  
+  .timeline-content {
+    margin-left: 5rem;
+    width: calc(100% - 7rem);
+    padding-right: 2rem;
+  }
+  
+  .timeline-phase {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5vh 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .phase-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-left: 3px solid;
+    padding-left: 1rem;
+  }
+  
+  .phase-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+  }
+  
+  .phase-header h3 {
+    font-size: 2rem;
+    margin: 0;
+  }
+  
+  .timeline-phase p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    padding-left: calc(40px + 1rem + 1rem);
+  }
+  
+  .phase-visual {
+    margin-top: 2rem;
+    background-color: var(--bg-dark);
+    border-radius: 10px;
+    overflow: hidden;
+    height: 300px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .phase-visual svg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Animations for svg elements */
+  .concept-visual .sketch-lines path,
+  .development-visual .systems path,
+  .analysis-visual .stress-analysis path,
+  .documentation-visual .building-plan > *,
+  .final-visual .building-facade > * {
+    animation: draw 2s forwards;
+  }
+  
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 1000;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  .concept-visual .sketch-lines,
+  .development-visual .systems,
+  .analysis-visual .stress-analysis,
+  .documentation-visual .building-plan,
+  .final-visual .building-facade {
+    stroke-dasharray: 1000;
+  }
+  
+  .concept-visual .annotations text,
+  .development-visual .annotations text,
+  .analysis-visual .annotations text,
+  .documentation-visual .annotations text {
+    animation: fadeIn 1s forwards;
+    opacity: 0;
+    animation-delay: 1s;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 0.7;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .timeline-animation {
+      padding: 2rem 0;
+    }
+    
+    .timeline-header h2 {
+      font-size: 2rem;
+    }
+    
+    .timeline-header p {
+      font-size: 1rem;
+    }
+    
+    .timeline-progress {
+      margin-left: 1rem;
+    }
+    
+    .timeline-content {
+      margin-left: 3rem;
+      width: calc(100% - 4rem);
+      padding-right: 1rem;
+    }
+    
+    .timeline-phase {
+      height: 80vh;
+    }
+    
+    .phase-header h3 {
+      font-size: 1.5rem;
+    }
+    
+    .timeline-phase p {
+      font-size: 1rem;
+      padding-left: 1rem;
+    }
+    
+    .phase-visual {
+      height: 200px;
+    }
+  }

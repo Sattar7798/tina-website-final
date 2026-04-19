@@ -1,0 +1,246 @@
+.research-web-visualization {
+  position: relative;
+  width: 100%;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(16, 24, 32, 0.95);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.web-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.web-header h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(45deg, #4cc9f0, #7209b7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.web-header p {
+  font-size: 1.1rem;
+  color: #e0e0e0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* 3D Architectural Visualization */
+.architectural-visualization {
+  width: 100%;
+  height: 400px;
+  margin: 0 auto 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.architectural-visualization canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Web graph styles */
+.web-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+}
+
+.web-container svg {
+  width: 100%;
+  height: 100%;
+  max-width: 800px;
+  max-height: 600px;
+}
+
+/* Link styles */
+.web-link {
+  fill: none;
+  stroke-width: 2;
+  opacity: 0.6;
+  transition: opacity 0.3s ease, stroke-width 0.3s ease;
+}
+
+.web-link.dashed {
+  stroke-dasharray: 5, 5;
+  stroke-width: 1.5;
+  opacity: 0.4;
+}
+
+.web-link.interdisciplinary {
+  stroke-width: 2.5;
+  opacity: 0.7;
+}
+
+.web-link.active {
+  opacity: 1;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 5px currentColor);
+}
+
+/* Node styles */
+.web-node {
+  cursor: pointer;
+  transition: fill 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+}
+
+.web-node.main {
+  filter: drop-shadow(0 0 8px rgba(76, 201, 240, 0.4));
+}
+
+.web-node.sub {
+  filter: drop-shadow(0 0 5px rgba(114, 9, 183, 0.3));
+}
+
+.web-node.active {
+  filter: drop-shadow(0 0 15px currentColor);
+}
+
+.web-node-text {
+  font-size: 12px;
+  fill: rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+  font-weight: 500;
+  transition: fill 0.3s ease, font-size 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.web-node-text.main {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.web-node-text.active {
+  fill: white;
+  font-weight: 600;
+}
+
+/* Node details panel */
+.node-details {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(16, 24, 32, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 550px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  z-index: 100;
+}
+
+.node-details h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  background: linear-gradient(to right, #4cc9f0, #7209b7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.node-details p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Animation keyframes for pulses and glows */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes glow {
+  0% {
+    filter: drop-shadow(0 0 3px currentColor);
+  }
+  50% {
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+  100% {
+    filter: drop-shadow(0 0 3px currentColor);
+  }
+}
+
+/* Apply animations to specific elements */
+.web-node.main {
+  animation: pulse 4s infinite ease-in-out;
+}
+
+.web-node.main.active {
+  animation: glow 2s infinite ease-in-out;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .research-web-visualization {
+    padding: 1.5rem;
+    min-height: 500px;
+  }
+  
+  .web-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .web-header p {
+    font-size: 1rem;
+  }
+
+  .architectural-visualization {
+    height: 300px;
+  }
+  
+  .web-container {
+    height: 450px;
+  }
+  
+  .node-details {
+    padding: 1rem;
+    width: 95%;
+  }
+  
+  .node-details h3 {
+    font-size: 1.2rem;
+  }
+  
+  .node-details p {
+    font-size: 0.9rem;
+  }
+}

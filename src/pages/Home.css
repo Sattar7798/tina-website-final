@@ -1,0 +1,254 @@
+.home-page {
+    width: 100%;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    display: flex;
+    min-height: 80vh;
+    padding: 8rem 2rem;
+    background-color: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-content {
+    flex: 1;
+    max-width: 600px;
+    z-index: 2;
+  }
+  
+  .hero-content h1 {
+    font-size: 4rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+  }
+  
+  .hero-content .highlight {
+    display: block;
+    color: var(--accent-research);
+  }
+  
+  .hero-content p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .hero-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+  
+  .layered-design {
+    position: relative;
+    width: 400px;
+    height: 400px;
+  }
+  
+  .layer {
+    position: absolute;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+  }
+  
+  .layer-1 {
+    width: 300px;
+    height: 300px;
+    background-color: var(--structural-base);
+    top: 0;
+    left: 0;
+    z-index: 4;
+    animation: float 6s infinite ease-in-out;
+  }
+  
+  .layer-2 {
+    width: 300px;
+    height: 300px;
+    background-color: var(--systems-base);
+    top: 30px;
+    left: 30px;
+    z-index: 3;
+    animation: float 6s infinite ease-in-out;
+    animation-delay: 0.2s;
+  }
+  
+  .layer-3 {
+    width: 300px;
+    height: 300px;
+    background-color: var(--sustainability-base);
+    top: 60px;
+    left: 60px;
+    z-index: 2;
+    animation: float 6s infinite ease-in-out;
+    animation-delay: 0.4s;
+  }
+  
+  .layer-4 {
+    width: 300px;
+    height: 300px;
+    background-color: var(--experience-base);
+    top: 90px;
+    left: 90px;
+    z-index: 1;
+    animation: float 6s infinite ease-in-out;
+    animation-delay: 0.6s;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(2deg);
+    }
+  }
+  
+  /* Section Styling */
+  section {
+    padding: 5rem 2rem;
+  }
+  
+  .section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
+  
+  .section-header p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+  }
+  
+  .concept-section {
+    background-color: var(--bg-medium);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .anatomy-section {
+    background-color: var(--bg-dark);
+  }
+  
+  .timeline-section {
+    background-color: var(--bg-medium);
+    padding: 0;
+  }
+  
+  .research-section {
+    background-color: var(--bg-dark);
+  }
+  
+  /* Call to Action */
+  .call-to-action {
+    text-align: center;
+    background-color: var(--bg-medium);
+    padding: 6rem 2rem;
+  }
+  
+  .call-to-action h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+  }
+  
+  .call-to-action p {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 992px) {
+    .hero-section {
+      flex-direction: column;
+      padding: 6rem 2rem;
+    }
+    
+    .hero-content {
+      max-width: 100%;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    
+    .hero-content h1 {
+      font-size: 3rem;
+    }
+    
+    .hero-content p {
+      font-size: 1.3rem;
+    }
+    
+    .hero-buttons {
+      justify-content: center;
+    }
+    
+    .hero-visual {
+      transform: scale(0.8);
+    }
+    
+    .call-to-action h2 {
+      font-size: 2.5rem;
+    }
+    
+    .call-to-action p {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .hero-content h1 {
+      font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+      font-size: 1.1rem;
+    }
+    
+    .hero-buttons {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .hero-visual {
+      transform: scale(0.6);
+    }
+    
+    .section-header h2 {
+      font-size: 2rem;
+    }
+    
+    .call-to-action h2 {
+      font-size: 2rem;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }

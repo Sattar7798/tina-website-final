@@ -1,0 +1,299 @@
+.publications-section {
+    width: 100%;
+    padding: 3rem 0;
+    position: relative;
+  }
+  
+  .publications-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .publications-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
+  
+  .publications-header p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .publications-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .filter-button {
+    padding: 0.7rem 1.2rem;
+    border: 2px solid var(--accent-research);
+    border-radius: 30px;
+    background-color: transparent;
+    color: var(--text-primary);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .filter-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-button.active {
+    background-color: var(--accent-research);
+    color: white;
+    transform: scale(1.05);
+  }
+  
+  .publications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 1rem;
+  }
+  
+  .publication-card {
+    background-color: var(--bg-medium);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .publication-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .publication-thumbnail {
+    height: 160px;
+    overflow: hidden;
+  }
+  
+  .publication-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .publication-card:hover .publication-thumbnail img {
+    transform: scale(1.05);
+  }
+  
+  .publication-info {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .publication-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .publication-authors {
+    color: var(--accent-research);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .publication-source {
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+  }
+  
+  .publication-year {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .publication-keywords {
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .keyword {
+    background-color: var(--bg-dark);
+    color: var(--text-muted);
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 500;
+  }
+  
+  .publication-details {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 22, 34, 0.9);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    overflow-y: auto;
+  }
+  
+  .details-content {
+    position: relative;
+    background-color: var(--bg-medium);
+    border-radius: 10px;
+    padding: 2.5rem;
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .close-button:hover {
+    color: var(--accent-innovation);
+  }
+  
+  .details-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+  
+  .details-authors {
+    font-size: 1.2rem;
+    color: var(--accent-research);
+    margin-bottom: 1.5rem;
+  }
+  
+  .details-source {
+    background-color: var(--bg-dark);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  
+  .details-source p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .details-source a {
+    color: var(--accent-research);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .details-source a:hover {
+    color: var(--accent-innovation);
+    text-decoration: underline;
+  }
+  
+  .details-abstract, .details-keywords {
+    margin-bottom: 2rem;
+  }
+  
+  .details-abstract h3, .details-keywords h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
+  
+  .details-abstract p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+  
+  .details-keywords div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+  
+  .details-keywords .keyword {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    background-color: var(--bg-dark);
+    color: var(--text-muted);
+    border-radius: 20px;
+  }
+  
+  .details-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .action-button {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--accent-research);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .action-button:hover {
+    background-color: var(--accent-innovation);
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 768px) {
+    .publications-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .details-content {
+      padding: 1.5rem;
+      width: 95%;
+    }
+    
+    .details-content h2 {
+      font-size: 1.6rem;
+    }
+    
+    .details-actions {
+      justify-content: center;
+    }
+  }

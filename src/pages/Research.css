@@ -1,0 +1,831 @@
+.research-page {
+    width: 100%;
+    color: var(--text-primary);
+    background-color: #f8f9fa;
+  }
+  
+  /* Hero Section */
+  .research-hero {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem 2rem;
+    overflow: hidden;
+    background-color: #101820;
+  }
+  
+  .hero-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  .hero-gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(16, 24, 32, 0.5) 0%, rgba(16, 24, 32, 0.98) 100%);
+    z-index: 1;
+  }
+  
+  .research-hero-content {
+    position: relative;
+    text-align: center;
+    max-width: 900px;
+    z-index: 20;
+    padding: 2.5rem;
+    border-radius: 12px;
+    background: rgba(16, 24, 32, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+  
+  .research-title {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(45deg, #ffffff, #b5acff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .research-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, #4cc9f0, #7209b7);
+    transform: translateX(-50%);
+  }
+  
+  .research-description {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  .research-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .research-keywords span {
+    padding: 0.5rem 1.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+  }
+  
+  .research-keywords span:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+  }
+  
+  /* Container */
+  .container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+  
+  /* Section Headers */
+  .section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    color: #111827;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #4cc9f0, #7209b7);
+    transform: translateX(-50%);
+    border-radius: 2px;
+  }
+  
+  .section-header p {
+    font-size: 1.3rem;
+    color: #4b5563;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .section-header.light h2 {
+    color: #ffffff;
+  }
+  
+  .section-header.light p {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  /* Research Areas Section */
+  .research-areas {
+    background-color: #f8f9fa;
+    padding: 4rem 0;
+    position: relative;
+  }
+  
+  .research-areas::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 20% 30%, rgba(76, 201, 240, 0.03) 0%, transparent 30%),
+      radial-gradient(circle at 80% 70%, rgba(114, 9, 183, 0.03) 0%, transparent 30%);
+    pointer-events: none;
+  }
+  
+  .research-areas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2.5rem;
+  }
+  
+  .research-area-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    border: none;
+    position: relative;
+    height: 100%;
+  }
+  
+  .research-area-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .research-area-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  }
+  
+  .research-area-card:hover::before {
+    opacity: 1;
+  }
+  
+  .area-icon-container {
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .area-icon-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+  }
+  
+  .area-icon-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
+    z-index: 1;
+  }
+  
+  .research-area-card:hover .area-icon-container::before {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  
+  .area-icon {
+    font-size: 4rem;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  }
+  
+  .research-area-card:hover .area-icon {
+    transform: scale(1.15);
+    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.2));
+  }
+  
+  .area-card-content {
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    background-color: #ffffff;
+  }
+  
+  .area-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    color: #111827;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .area-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: currentColor;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+  
+  .research-area-card:hover .area-title::after {
+    width: 70px;
+  }
+  
+  .area-description {
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    flex: 1;
+    font-size: 1.05rem;
+  }
+  
+  .area-indicators {
+    display: flex;
+    gap: 2rem;
+    margin-top: auto;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  
+  .area-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+  }
+  
+  .area-indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -1rem;
+    width: 2px;
+    height: 70%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .research-area-card:hover .area-indicator::before {
+    opacity: 0.5;
+  }
+  
+  .research-area-card[data-area="bim"] .area-indicator::before {
+    background-color: #4361ee;
+  }
+  
+  .research-area-card[data-area="specialized-buildings"] .area-indicator::before {
+    background-color: #7209b7;
+  }
+  
+  .research-area-card[data-area="smart-design"] .area-indicator::before {
+    background-color: #f72585;
+  }
+  
+  .research-area-card[data-area="structural-systems"] .area-indicator::before {
+    background-color: #480ca8;
+  }
+  
+  .indicator-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    line-height: 1;
+  }
+  
+  .research-area-card:hover .indicator-value {
+    transform: translateY(-2px);
+  }
+  
+  .indicator-label {
+    font-size: 0.85rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    margin-top: 0.4rem;
+  }
+  
+  /* Set colors for each research area card */
+  .research-area-card[data-area="bim"] .area-icon-container::before {
+    background: linear-gradient(135deg, #4cc9f0, #4361ee);
+  }
+  
+  .research-area-card[data-area="bim"] .indicator-value {
+    color: #4361ee;
+  }
+  
+  .research-area-card[data-area="specialized-buildings"] .area-icon-container::before {
+    background: linear-gradient(135deg, #7209b7, #3a0ca3);
+  }
+  
+  .research-area-card[data-area="specialized-buildings"] .indicator-value {
+    color: #7209b7;
+  }
+  
+  .research-area-card[data-area="smart-design"] .area-icon-container::before {
+    background: linear-gradient(135deg, #f72585, #b5179e);
+  }
+  
+  .research-area-card[data-area="smart-design"] .indicator-value {
+    color: #f72585;
+  }
+  
+  .research-area-card[data-area="structural-systems"] .area-icon-container::before {
+    background: linear-gradient(135deg, #480ca8, #3f37c9);
+  }
+  
+  .research-area-card[data-area="structural-systems"] .indicator-value {
+    color: #480ca8;
+  }
+  
+  /* Animation for gradient backgrounds */
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Research Visualization Section */
+  .research-visualization {
+    background-color: #f0f4f8;
+    overflow: hidden;
+  }
+  
+  .visualization-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Methodology Section */
+  .research-methodology {
+    background: linear-gradient(135deg, #101820, #1a2a3a);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .methodology-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+  
+  .methodology-item {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 12px;
+    border-left: 4px solid #4cc9f0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  
+  .methodology-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+  
+  .methodology-icon {
+    font-size: 2.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  
+  .methodology-content {
+    flex: 1;
+  }
+  
+  .methodology-number {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.2);
+    line-height: 1;
+  }
+  
+  .methodology-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: white;
+    background: linear-gradient(45deg, #4cc9f0, #b5179e);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .methodology-description {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+  }
+  
+  /* Latest Projects Section */
+  .latest-projects {
+    background-color: #101820;
+    color: white;
+    position: relative;
+  }
+  
+  .latest-projects::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(76, 201, 240, 0.1), transparent 70%);
+    z-index: 1;
+  }
+  
+  .latest-projects .container {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .latest-projects .section-header h2 {
+    color: white;
+  }
+  
+  .latest-projects .section-header p {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .project-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  .project-image {
+    height: 160px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .project-year {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #101820;
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
+  
+  .project-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .project-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: white;
+    line-height: 1.4;
+  }
+  
+  .project-excerpt {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+  
+  .project-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .technology-tag {
+    padding: 0.4rem 0.8rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+  }
+  
+  .technology-tag:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .project-link {
+    align-self: flex-start;
+    color: #4cc9f0;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid rgba(76, 201, 240, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+  }
+  
+  .project-link:hover {
+    color: #7209b7;
+    border-bottom-color: #7209b7;
+  }
+  
+  .project-link::after {
+    content: "→";
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .project-link:hover::after {
+    transform: translateX(4px);
+  }
+  
+  .view-all-container {
+    text-align: center;
+    margin-top: 3rem;
+  }
+  
+  .view-all-button {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    background: linear-gradient(to right, #4cc9f0, #7209b7);
+    color: white;
+    font-weight: 500;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(76, 201, 240, 0.3);
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .view-all-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.6s ease;
+  }
+  
+  .view-all-button:hover::before {
+    left: 100%;
+  }
+  
+  /* Animation keyframes */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+  }
+  
+  @keyframes glow {
+    0% {
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+      background-color: rgba(255, 255, 255, 0.6);
+    }
+    100% {
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 992px) {
+    .research-title {
+      font-size: 3rem;
+    }
+    
+    .research-description {
+      font-size: 1.2rem;
+    }
+    
+    .container {
+      padding: 4rem 2rem;
+    }
+    
+    .section-header h2 {
+      font-size: 2.2rem;
+    }
+    
+    .projects-grid,
+    .research-areas-grid,
+    .methodology-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .research-hero {
+      padding: 5rem 1.5rem;
+    }
+    
+    .research-hero-content {
+      padding: 2rem 1.5rem;
+    }
+    
+    .research-title {
+      font-size: 2.5rem;
+    }
+    
+    .research-description {
+      font-size: 1.1rem;
+    }
+    
+    .container {
+      padding: 3rem 1.5rem;
+    }
+    
+    .projects-grid,
+    .research-areas-grid,
+    .methodology-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .research-keywords {
+      flex-wrap: wrap;
+    }
+    
+    .methodology-item {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .research-title {
+      font-size: 2.2rem;
+    }
+    
+    .research-description {
+      font-size: 1rem;
+    }
+    
+    .section-header h2 {
+      font-size: 1.8rem;
+    }
+    
+    .section-header p {
+      font-size: 1rem;
+    }
+    
+    .area-title,
+    .methodology-title,
+    .project-title {
+      font-size: 1.2rem;
+    }
+    
+    .container {
+      padding: 2.5rem 1.2rem;
+    }
+    
+    .methodology-icon {
+      width: 50px;
+      height: 50px;
+      font-size: 2rem;
+    }
+  }
+
+  /* Research Page Main Content */
+  .research-page main {
+    background-color: #f8f9fa;
+  }

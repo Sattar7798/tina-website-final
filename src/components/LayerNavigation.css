@@ -1,0 +1,117 @@
+.layer-navigation {
+    width: 100%;
+    margin: 3rem 0;
+  }
+  
+  .layer-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    gap: 1.5rem;
+  }
+  
+  .layer-tab {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    border: 2px solid;
+    border-radius: 50px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  
+  .layer-tab.active {
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .layer-tab:hover {
+    transform: translateY(-3px);
+  }
+  
+  .layer-icon {
+    font-size: 1.4rem;
+    margin-right: 0.5rem;
+  }
+  
+  .layer-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+  }
+  
+  .layer-hint {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bg-dark);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    width: max-content;
+    max-width: 200px;
+    color: var(--text-muted);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 10;
+  }
+  
+  .layer-hint::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid var(--bg-dark);
+  }
+  
+  .layer-content {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .layer-content-inner {
+    padding: 2rem;
+    color: white;
+  }
+  
+  .layer-content-inner h3 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+  }
+  
+  .layer-content-inner p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 768px) {
+    .layer-tabs {
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .layer-tab {
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .layer-icon {
+      font-size: 1.2rem;
+    }
+    
+    .layer-hint {
+      display: none;
+    }
+  }

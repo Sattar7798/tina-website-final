@@ -1,0 +1,1290 @@
+/* src/pages/About.css */
+
+/* Main container styles */
+.about-container {
+    position: relative;
+    width: 100%;
+    color: var(--text-primary);
+    background-color: var(--bg-dark);
+}
+
+/* Persian-inspired hero section styles */
+.persian-hero {
+    position: relative;
+    height: 600px;
+    margin-bottom: 4rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to bottom, #0f172a, #1e293b);
+}
+
+.persian-arch-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.persian-arch {
+    position: absolute;
+    bottom: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140%;
+    height: 140%;
+    border-radius: 50% 50% 0 0;
+    border: 2px solid rgba(168, 85, 247, 0.2);
+    box-shadow: inset 0 0 60px rgba(168, 85, 247, 0.15);
+}
+
+.persian-arch-shadow {
+    position: absolute;
+    bottom: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130%;
+    height: 130%;
+    border-radius: 50% 50% 0 0;
+    border: 2px solid rgba(139, 92, 246, 0.1);
+}
+
+.persian-pattern-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.15;
+}
+
+.persian-pattern-element {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(168, 85, 247, 0.8)" stroke-width="1" d="M50,10 L90,50 L50,90 L10,50 Z M30,30 L70,30 L70,70 L30,70 Z M10,50 L30,50 M50,10 L50,30 M90,50 L70,50 M50,90 L50,70"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform-origin: center;
+    animation: rotatePattern 60s infinite linear;
+}
+
+@keyframes rotatePattern {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+    color: white;
+}
+
+.persian-ornamental-border {
+    position: relative;
+    padding: 1rem 3rem;
+    margin-bottom: 2rem;
+}
+
+.persian-ornamental-border::before,
+.persian-ornamental-border::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(168, 85, 247, 0.7)" stroke-width="1.5" d="M10,10 L90,10 L90,90 L10,90 Z M30,10 L30,90 M70,10 L70,90 M10,30 L90,30 M10,70 L90,70 M10,10 L90,90 M90,10 L10,90"/></svg>');
+    background-size: contain;
+}
+
+.persian-ornamental-border::before {
+    top: 0;
+    left: 0;
+    transform: translate(-30%, -30%);
+}
+
+.persian-ornamental-border::after {
+    bottom: 0;
+    right: 0;
+    transform: translate(30%, 30%);
+}
+
+.persian-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #fff, #d8b4fe);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+}
+
+.persian-text {
+    font-size: 1.25rem;
+    max-width: 800px;
+    line-height: 1.7;
+    color: #e2e8f0;
+}
+
+.persian-icons-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.persian-hero-icon {
+    width: 60px;
+    height: 60px;
+    opacity: 0.8;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.persian-dome {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(168, 85, 247, 0.9)" stroke-width="1.5" d="M10,70 C10,40 90,40 90,70 L90,90 L10,90 Z M30,90 L30,70 M70,90 L70,70 M50,40 L50,20 M40,20 L60,20"/></svg>');
+}
+
+.persian-star {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(139, 92, 246, 0.9)" stroke-width="1" d="M50,10 L61,40 L93,40 L67,60 L79,90 L50,70 L21,90 L33,60 L7,40 L39,40 Z"/></svg>');
+}
+
+.persian-minaret {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(168, 85, 247, 0.9)" stroke-width="1.5" d="M40,90 L60,90 L60,30 C60,20 40,20 40,30 Z M40,70 L60,70 M40,50 L60,50 M40,30 L60,30 M50,10 L50,30 M40,10 L60,10"/></svg>');
+}
+
+/* Persian Architectural Visualization Section */
+.persian-architectural-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    background: linear-gradient(to right, #0f172a, #1e293b);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.persian-architectural-elements {
+    position: relative;
+    height: 500px;
+    width: 100%;
+}
+
+.persian-dome-3d {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 100px;
+    border-radius: 100px 100px 0 0;
+    background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.3) 0%, rgba(76, 29, 149, 0.1) 70%);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.2);
+    animation: dome-glow 5s infinite alternate ease-in-out;
+}
+
+.persian-dome-3d::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 30px;
+    background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.3) 0%, rgba(76, 29, 149, 0.1) 70%);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 10px 10px 0 0;
+}
+
+@keyframes dome-glow {
+    0% {
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 60px rgba(139, 92, 246, 0.4);
+    }
+}
+
+.persian-arches-group {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.persian-arch-element {
+    width: 30%;
+    height: 100%;
+    border-radius: 100px 100px 0 0;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    background: rgba(30, 41, 59, 0.5);
+    box-shadow: inset 0 10px 20px rgba(139, 92, 246, 0.1);
+    animation: arch-pulse 4s infinite alternate;
+}
+
+.persian-arch-element:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.persian-arch-element:nth-child(3) {
+    animation-delay: 2s;
+}
+
+@keyframes arch-pulse {
+    0% {
+        box-shadow: inset 0 10px 20px rgba(139, 92, 246, 0.1);
+    }
+    100% {
+        box-shadow: inset 0 10px 30px rgba(139, 92, 246, 0.3);
+    }
+}
+
+.persian-column-group {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.persian-column {
+    width: 10%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(139, 92, 246, 0.4), rgba(76, 29, 149, 0.2));
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 5px 5px 0 0;
+}
+
+/* Persian Timeline Styles */
+.persian-timeline {
+    position: relative;
+    padding-left: 3rem;
+    margin-left: 1rem;
+}
+
+.persian-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to bottom, #8b5cf6, #c084fc);
+    border-radius: 3px;
+}
+
+.persian-timeline-dot {
+    position: absolute;
+    top: 0.5rem;
+    left: -3.5rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: #8b5cf6;
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.3);
+    z-index: 2;
+}
+
+.timeline-connector {
+    position: absolute;
+    top: 0.8rem;
+    left: -2.3rem;
+    width: 2.2rem;
+    height: 2px;
+    background: linear-gradient(to right, #8b5cf6, #c084fc);
+}
+
+/* Research Interests with Persian Motifs */
+.persian-research-section {
+    position: relative;
+    padding: 4rem 2rem;
+    margin-bottom: 5rem;
+    border-radius: 12px;
+    background: linear-gradient(to right, #0f172a, #1e293b);
+    overflow: hidden;
+}
+
+.persian-research-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(139, 92, 246, 0.1)" stroke-width="1" d="M10,10 L90,10 L90,90 L10,90 Z M10,30 L90,30 M10,50 L90,50 M10,70 L90,70 M30,10 L30,90 M50,10 L50,90 M70,10 L70,90"/></svg>');
+    background-size: 100px 100px;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.persian-interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.persian-interest-card {
+    background: rgba(30, 41, 59, 0.7);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.persian-interest-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(139, 92, 246, 0.4);
+}
+
+.persian-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1.5rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+}
+
+.bagdir {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(139, 92, 246, 0.9)" stroke-width="1.5" d="M30,90 L70,90 L70,20 L30,20 Z M30,40 L70,40 M30,60 L70,60 M50,20 L50,10 M20,20 L80,20"/></svg>');
+}
+
+.muqarnas {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(139, 92, 246, 0.9)" stroke-width="1.5" d="M10,90 L90,90 M20,90 L20,70 C20,60 30,60 30,70 L30,90 M40,90 L40,70 C40,60 50,60 50,70 L50,90 M60,90 L60,70 C60,60 70,60 70,70 L70,90 M80,90 L80,70 M30,60 L30,40 C30,30 40,30 40,40 L40,60 M50,60 L50,40 C50,30 60,30 60,40 L60,60 M40,30 L40,10 M60,30 L60,10"/></svg>');
+}
+
+.dome {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(139, 92, 246, 0.9)" stroke-width="1.5" d="M20,60 C20,40 80,40 80,60 L80,90 L20,90 Z M10,60 C10,30 90,30 90,60 M30,60 C30,50 70,50 70,60 M40,90 L40,60 M60,90 L60,60 M50,40 L50,20 M45,20 L55,20"/></svg>');
+}
+
+.garden {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(139, 92, 246, 0.9)" stroke-width="1.5" d="M10,10 L90,10 L90,90 L10,90 Z M10,50 L90,50 M50,10 L50,90 M30,30 C40,25 60,25 70,30 M30,70 C40,75 60,75 70,70 M30,30 C25,40 25,60 30,70 M70,30 C75,40 75,60 70,70"/></svg>');
+}
+
+.interest-title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #f1f5f9;
+    font-weight: 600;
+}
+
+/* Architectural Visualization Section */
+.architectural-visualization-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    background: linear-gradient(to right, #101820, #1a2a3a);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.visualization-wrapper {
+    height: 500px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.visualization-text {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.visualization-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: white;
+    background: linear-gradient(45deg, #4cc9f0, #b5179e);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.visualization-text p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Section styles */
+.about-section {
+    margin-bottom: 5rem;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    position: relative;
+    color: #101820;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 4rem;
+    height: 0.25rem;
+    background: linear-gradient(to right, #4cc9f0, #b5179e);
+    border-radius: 0.25rem;
+}
+
+.section-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 2.5rem;
+    max-width: 900px;
+}
+
+/* Timeline styles */
+.timeline {
+    position: relative;
+    padding-left: 3rem;
+    margin-left: 1rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to bottom, #4cc9f0, #b5179e);
+    border-radius: 3px;
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 3rem;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+
+.timeline-item.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.timeline-dot {
+    position: absolute;
+    top: 0.5rem;
+    left: -3.5rem;
+    width: 1rem;
+    height: 1rem;
+    background-color: #4cc9f0;
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px rgba(76, 201, 240, 0.3);
+    z-index: 2;
+}
+
+.timeline-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #101820;
+}
+
+.timeline-subtitle {
+    font-size: 1.1rem;
+    color: #7209b7;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.timeline-date {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.timeline-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Research methodology grid */
+.methodology-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.methodology-item {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border-top: 4px solid transparent;
+    border-image: linear-gradient(to right, #4cc9f0, #7209b7);
+    border-image-slice: 1;
+}
+
+.methodology-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.methodology-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(76, 201, 240, 0.1), rgba(114, 9, 183, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.methodology-item:hover::before {
+    opacity: 1;
+}
+
+.methodology-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    background: linear-gradient(45deg, #4cc9f0, #7209b7);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 5px 15px rgba(114, 9, 183, 0.2);
+}
+
+.methodology-icon svg {
+    color: white;
+    width: 1.8rem;
+    height: 1.8rem;
+}
+
+.methodology-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #101820;
+    position: relative;
+    z-index: 1;
+}
+
+.methodology-item p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+    position: relative;
+    z-index: 1;
+}
+
+/* Experience card styles */
+.experience-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+    border-left: 4px solid #4cc9f0;
+}
+
+.experience-card:hover {
+    transform: translateY(-5px);
+}
+
+.experience-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #101820;
+}
+
+.experience-company {
+    font-size: 1.1rem;
+    color: #7209b7;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.experience-date {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 1.5rem;
+}
+
+.experience-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.experience-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+.experience-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #4cc9f0;
+}
+
+/* Research interests styles */
+.interests-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .interests-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.interest-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.05);
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.interest-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.03);
+}
+
+.interest-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--neutral-900);
+    border-bottom: 2px solid var(--primary-200);
+    padding-bottom: 0.5rem;
+}
+
+/* Skills section styles */
+.skills-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.skills-category {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.skills-category-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #101820;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(76, 201, 240, 0.3);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-item {
+    position: relative;
+    height: 2rem;
+    background: rgba(76, 201, 240, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-level {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(to right, #4cc9f0, #7209b7);
+    border-radius: 4px;
+    transition: width 1s ease;
+}
+
+.skill-name {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #101820;
+    z-index: 1;
+}
+
+/* CTA section styles */
+.cta-section {
+    background-color: var(--primary-50);
+    padding: 3rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.cta-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--neutral-900);
+}
+
+.cta-text {
+    max-width: 36rem;
+    margin: 0 auto 2rem auto;
+    color: var(--neutral-700);
+    line-height: 1.6;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--primary-600);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--primary-700);
+}
+
+/* Animation classes */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stagger-item {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(76, 201, 240, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(76, 201, 240, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(76, 201, 240, 0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    
+    .hero-description {
+        font-size: 1.1rem;
+    }
+    
+    .architectural-visualization-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .visualization-wrapper {
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .about-hero {
+        height: 400px;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .methodology-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .experience-title {
+        font-size: 1.2rem;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .about-hero {
+        height: 350px;
+    }
+    
+    .visualization-wrapper {
+        height: 300px;
+    }
+    
+    .timeline {
+        padding-left: 2rem;
+    }
+    
+    .timeline-dot {
+        left: -2.5rem;
+    }
+    
+    .methodology-item,
+    .experience-card,
+    .skills-category {
+        padding: 1.5rem;
+    }
+}
+
+/* Persian Heritage Section */
+.persian-heritage-section {
+    position: relative;
+    padding: 4rem 2rem;
+    margin-bottom: 5rem;
+    border-radius: 12px;
+    background: linear-gradient(to right, #0f172a, #1e293b);
+    overflow: hidden;
+}
+
+.heritage-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.07;
+}
+
+.eslimi-pattern-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(168, 85, 247, 0.8)" stroke-width="1" d="M0,0 C20,10 20,30 0,40 C20,50 20,70 0,80 C20,90 20,110 0,120 M0,20 C20,30 20,50 0,60 C20,70 20,90 0,100 M25,0 C45,10 45,30 25,40 C45,50 45,70 25,80 C45,90 45,110 25,120 M25,20 C45,30 45,50 25,60 C45,70 45,90 25,100 M50,0 C70,10 70,30 50,40 C70,50 70,70 50,80 C70,90 70,110 50,120 M50,20 C70,30 70,50 50,60 C70,70 70,90 50,100 M75,0 C95,10 95,30 75,40 C95,50 95,70 75,80 C95,90 95,110 75,120 M75,20 C95,30 95,50 75,60 C95,70 95,90 75,100"/></svg>');
+    background-size: 200px 200px;
+}
+
+.persian-motifs-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.persian-motif {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+}
+
+.motif-toranj {
+    top: 10%;
+    right: 5%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(168, 85, 247, 0.6)" stroke-width="1" d="M50,10 L90,50 L50,90 L10,50 Z M20,50 A30,30 0 0,0 50,80 A30,30 0 0,0 80,50 A30,30 0 0,0 50,20 A30,30 0 0,0 20,50 M30,50 A20,20 0 0,0 50,70 A20,20 0 0,0 70,50 A20,20 0 0,0 50,30 A20,20 0 0,0 30,50 M10,50 L30,50 M90,50 L70,50 M50,10 L50,30 M50,90 L50,70"/></svg>');
+}
+
+.motif-eslimi {
+    bottom: 20%;
+    left: 10%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(139, 92, 246, 0.6)" stroke-width="1" d="M30,10 C60,20 70,50 50,70 C40,80 20,80 10,70 C0,60 0,40 10,30 C20,20 40,20 50,30 C60,40 60,60 50,70 C40,80 20,80 10,70 M70,30 C40,40 30,70 50,90 C60,100 80,100 90,90 C100,80 100,60 90,50 C80,40 60,40 50,50 C40,60 40,80 50,90 C60,100 80,100 90,90"/></svg>');
+}
+
+.motif-shamseh {
+    top: 40%;
+    left: 20%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(168, 85, 247, 0.6)" stroke-width="1" d="M50,10 L61,40 L93,40 L67,60 L79,90 L50,70 L21,90 L33,60 L7,40 L39,40 Z M50,30 L56,48 L76,48 L60,60 L67,78 L50,65 L33,78 L40,60 L24,48 L44,48 Z"/></svg>');
+}
+
+.motif-arabesque {
+    bottom: 10%;
+    right: 15%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(139, 92, 246, 0.6)" stroke-width="1" d="M10,50 C30,30 70,30 90,50 M10,70 C30,50 70,50 90,70 M10,30 C30,10 70,10 90,30 M30,90 C40,70 60,70 70,90 M30,10 C40,30 60,30 70,10 M50,10 L50,90"/></svg>');
+}
+
+.heritage-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.persian-section-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    position: relative;
+    color: #f8fafc;
+    text-align: center;
+}
+
+.persian-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10rem;
+    height: 0.25rem;
+    background: linear-gradient(to right, #8b5cf6, #c084fc);
+    border-radius: 0.25rem;
+}
+
+.persian-sites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.persian-site {
+    background: rgba(30, 41, 59, 0.7);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.persian-site:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.site-image {
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.site-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.7));
+}
+
+.persepolis {
+    background-image: url('https://images.unsplash.com/photo-1561722769-9f456e3a591a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80');
+}
+
+.isfahan {
+    background-image: url('https://images.unsplash.com/photo-1609539143700-975389706c17?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80');
+}
+
+.yazd {
+    background-image: url('https://images.unsplash.com/photo-1585114953530-e89f6aab5ccc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80');
+}
+
+.kashan {
+    background-image: url('https://images.unsplash.com/photo-1572977523671-e3cb97e01726?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80');
+}
+
+.persian-site h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 1rem 1rem 0.5rem;
+    color: #e2e8f0;
+}
+
+.persian-site p {
+    font-size: 0.9rem;
+    padding: 0 1rem 1rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+}
+
+/* Persian CTA Section */
+.persian-cta {
+    position: relative;
+    padding: 4rem 2rem;
+    margin-top: 5rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.persian-cta-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.1;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(139, 92, 246, 0.6)" stroke-width="1" d="M0,50 C25,25 75,25 100,50 M0,35 C25,10 75,10 100,35 M0,65 C25,40 75,40 100,65 M0,80 C25,55 75,55 100,80 M0,20 C25,-5 75,-5 100,20"/></svg>');
+    background-size: 100px 100px;
+}
+
+.persian-cta::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.1) 0%, rgba(15, 23, 42, 0) 70%);
+    z-index: 0;
+}
+
+.persian-button {
+    position: relative;
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(45deg, #8b5cf6, #c084fc);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-decoration: none;
+    margin-top: 2rem;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+}
+
+.persian-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.6s ease;
+    z-index: -1;
+}
+
+.persian-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(139, 92, 246, 0.4);
+}
+
+.persian-button:hover::before {
+    left: 100%;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 1024px) {
+    .persian-architectural-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .persian-sites-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .persian-title {
+        font-size: 2.8rem;
+    }
+    
+    .persian-hero {
+        height: 500px;
+    }
+    
+    .persian-arch {
+        width: 180%;
+    }
+    
+    .persian-icons-container {
+        flex-wrap: wrap;
+    }
+    
+    .persian-sites-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .persian-timeline {
+        padding-left: 2rem;
+    }
+    
+    .persian-timeline-dot {
+        left: -2.5rem;
+    }
+    
+    .timeline-connector {
+        width: 1.5rem;
+        left: -1.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .persian-title {
+        font-size: 2.2rem;
+    }
+    
+    .persian-text {
+        font-size: 1rem;
+    }
+    
+    .persian-hero {
+        height: 450px;
+    }
+    
+    .persian-architectural-elements {
+        height: 350px;
+    }
+    
+    .persian-dome-3d {
+        width: 150px;
+        height: 75px;
+    }
+    
+    .persian-heritage-section,
+    .persian-research-section,
+    .persian-cta {
+        padding: 3rem 1.5rem;
+    }
+    
+    .persian-timeline {
+        padding-left: 1.5rem;
+        margin-left: 0.5rem;
+    }
+    
+    .persian-timeline-dot {
+        width: 1rem;
+        height: 1rem;
+        left: -2rem;
+    }
+    
+    .timeline-connector {
+        width: 1.2rem;
+        left: -1.4rem;
+    }
+    
+    .persian-section-title {
+        font-size: 1.8rem;
+    }
+    
+    .persian-section-title::after {
+        width: 8rem;
+    }
+}
